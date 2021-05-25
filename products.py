@@ -1,12 +1,26 @@
-# 讀取檔案
+import os # operating system
+
 products = []
-with open('products.csv' , 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue
-		name, price = line.strip().split(',')
-		products.append([ name, price])
-print(products)
+if os.path.isfile('products.csv'):
+	print('yes!')
+	with open('products.csv' , 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if'商品,價格' in line:
+				continue
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+else:
+	print('找不到...')
+#讀取檔案
+#with open('products.csv' , 'r', encoding = 'utf-8') as f:
+#	for line in f:
+#		if '商品,價格' in line:
+#			continue
+#		name, price = line.strip().split(',')
+#		products.append([ name, price])
+#print(products)
+
 
 # 讓使用者輸入
 while True:
@@ -19,10 +33,10 @@ while True:
 print(products)
 # 2 dimensional 
 
-# 寫入檔案
+
 for p in products:
 	print(p[0],'的價格是',p[1])
-
+# 寫入檔案
 with open('products.csv', 'w', encoding = 'utf-8') as f:
 	f.write('商品,價格\n')
 	for p in products:
